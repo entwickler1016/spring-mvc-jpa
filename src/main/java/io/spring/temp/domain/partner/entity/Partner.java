@@ -1,24 +1,44 @@
 package io.spring.temp.domain.partner.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.spring.temp.global.common.BaseTime;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.*;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
-@Table(indexes = {
-    @Index(columnList = "deleted")
-})
+@Table(
+        name = "partner",
+        indexes = {
+                @Index(columnList = "deleted")
+        }
+)
 @SQLDelete(sql = "UPDATE partner SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
-public class Partner extends BaseTime {
+public class Partner {
+
+    @Id
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "VARCHAR(36)")
+    private UUID id;
+
+    @Column(nullable=false)
+    @JsonIgnore
+    private boolean deleted = Boolean.FALSE;
+
+    @CreationTimestamp
+    private LocalDateTime created;
+
+    @UpdateTimestamp
+    private LocalDateTime modified;
 
     //회사-사업자등록번호
     @Column(nullable=false, length = 16)
