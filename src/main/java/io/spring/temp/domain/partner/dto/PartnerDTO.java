@@ -1,5 +1,6 @@
 package io.spring.temp.domain.partner.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.spring.temp.domain.partner.entity.Partner;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
@@ -7,16 +8,16 @@ import org.springframework.beans.BeanUtils;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class PartnerDTO {
     private UUID id;
     private boolean deleted;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime created;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime modified;
     private String corpNumber;
     private String corpName;

@@ -4,12 +4,10 @@ import io.spring.temp.domain.partner.dto.PartnerDTO;
 import io.spring.temp.domain.partner.service.PartnerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,9 +21,21 @@ public class PartnerAPI {
         return ResponseEntity.ok(partnerService.getPartners());
     }
 
-    @PostMapping("add")
-    public ResponseEntity<PartnerDTO> addPartner(PartnerDTO dto) {
-        partnerService.addPartner(dto);
+    @PostMapping("")
+    public ResponseEntity<PartnerDTO> addPartner(@RequestBody PartnerDTO dto) {
+        partnerService.insertPartner(dto);
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PartnerDTO> updatePartner(@PathVariable UUID id, @RequestBody PartnerDTO dto) {
+        partnerService.updatePartner(id, dto);
+        return ResponseEntity.ok(null);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PartnerDTO> deletePartner(@PathVariable UUID id) {
+        partnerService.deletePartner(id);
         return ResponseEntity.ok(null);
     }
 }

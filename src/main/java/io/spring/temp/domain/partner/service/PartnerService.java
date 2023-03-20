@@ -1,7 +1,6 @@
 package io.spring.temp.domain.partner.service;
 
 import io.spring.temp.domain.partner.dto.PartnerDTO;
-import io.spring.temp.domain.partner.entity.Partner;
 import io.spring.temp.domain.partner.repository.PartnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,19 +20,23 @@ public class PartnerService {
         return partnerRepository.findAll().stream().map(PartnerDTO::toDTO).toList();
     }
 
-    public Optional<PartnerDTO> getPartnerById(String id){
+    public Optional<PartnerDTO> getPartnerById(UUID id){
         return partnerRepository.findById(id).map(PartnerDTO::toDTO);
     }
 
-    public void addPartner(PartnerDTO dto){
+    @Transactional
+    public void insertPartner(PartnerDTO dto){
         partnerRepository.save(dto.toEntity());
     }
 
-    public void updatePartner(PartnerDTO dto){
+    @Transactional
+    public void updatePartner(UUID id, PartnerDTO dto){
+        dto.setId(id);
         partnerRepository.save(dto.toEntity());
     }
 
-    public void deletePartner(String id){
+    @Transactional
+    public void deletePartner(UUID id){
         partnerRepository.deleteById(id);
     }
 
