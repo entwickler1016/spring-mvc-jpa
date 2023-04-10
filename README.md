@@ -1,27 +1,21 @@
-# Getting Started
 
-### Reference Documentation
+# Spring Web - JPA Template
 
-For further reference, please consider the following sections:
+- https://spring.io/projects/spring-framework
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.0.4/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.0.4/gradle-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.0.4/reference/htmlsingle/#web)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.0.4/reference/htmlsingle/#using.devtools)
+- https://spring.io/projects/spring-data-jpa
 
-### Guides
 
-The following guides illustrate how to use some features concretely:
+## Tech Stack
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
+**Spring:** Boot(3.0.5), JPA, WEB
 
-### Additional Links
+**Database:** Mysql(8.0)
 
-These additional references should also help you:
+**Other:** Gradle, Log4j2
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+
+## Authors
+
+[@kimblue1016](https://www.github.com/kimblue1016)
 
